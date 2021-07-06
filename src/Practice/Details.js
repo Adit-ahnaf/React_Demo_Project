@@ -1,31 +1,18 @@
 import React from 'react';
-import {useState, useEffect} from 'react';
+import {useState, useEffect, Component} from 'react';
 import {useParams} from 'react-router-dom'
 import axios from 'axios';
+import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 
 
-const Details = () => {
+const Details = (props) => {
     
-    const { id } = useParams();
-   
-    const [user, setUser] = useState([]);
+    const value = props.location.state
 
-    useEffect(()=>{
-        fetchUser();
-       }, []);
-
-       const fetchUser = async ()=>{
-        const response = await axios.get(`https://my-json-server.typicode.com/istiak227/blog-server/blogs/${id}`);
-        console.log(response)
-        setUser(response.data)
-       
-    };
-   
     return (
-        <div>
-          <h1>{user.title}</h1>
-          <h2>{user.description}</h2>
-
+        <div class="p-8 mx-50">
+          <h1 class="text-4xl text-red-500 font-extrabold">{value.title}</h1><br></br>
+          <h3 class="font-medium text-justify">{value.description}</h3>
            </div>
     
     

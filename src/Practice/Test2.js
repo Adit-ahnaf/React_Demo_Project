@@ -9,7 +9,7 @@ const Test2 = () => {
 
 
    
-    const [user, setUser] = useState([]);
+    const [users, setUser] = useState([]);
 
 
     useEffect(()=>{
@@ -24,12 +24,15 @@ const Test2 = () => {
     };
 
     return (
-        <div>
-        {user.map((user) => (
-            <div >
-           <Link to={`/details/${user.id}`}>{user.title}</Link>
-           <h4>{user.date}</h4>
-           <h3>{user.subtitle}</h3>
+        <div >
+        {users.map((user) => (
+            <div class="text-justify p-5 mx-60"  >
+           <Link  class="text-4xl text-red-500 font-extrabold" to={{
+               pathname:'/details/description',
+               state: user,
+           }}>{user.title}</Link>
+           <h4  class="text-blue-800 font-medium">{user.date}</h4><br></br>
+           <h3 >{user.subtitle}</h3>
 
            </div>
             ))}
