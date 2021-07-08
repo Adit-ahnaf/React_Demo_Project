@@ -1,6 +1,6 @@
 import React from 'react';
 import {useState, useEffect, Component} from 'react';
-import {useParams} from 'react-router-dom'
+import {useParams, Redirect} from 'react-router-dom'
 import axios from 'axios';
 import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 
@@ -8,6 +8,9 @@ import { useRouteMatch } from 'react-router-dom/cjs/react-router-dom.min';
 const Details = (props) => {
     
     const value = props.location.state
+
+
+
 
     return (
         <div class="p-8 mx-50">
@@ -17,6 +20,7 @@ const Details = (props) => {
     
     
     );
+
 };
 
 export default Details;

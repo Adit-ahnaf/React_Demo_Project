@@ -1,14 +1,14 @@
 import React from 'react';
 import {useState, useEffect} from 'react';
-import {useParams} from 'react-router-dom'
+import {Redirect, useParams} from 'react-router-dom'
 import axios from 'axios';
+import Auth from './Auth';
 import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 
-const Test2 = () => {
+const Test2 = (props) => {
 
-
-   
+ 
     const [users, setUser] = useState([]);
 
 
@@ -25,10 +25,16 @@ const Test2 = () => {
 
     return (
         <div >
+             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"  onClick={()=>Auth.logout(()=>{
+        props.history.push('/')
+      })} type="button">
+        Log Out 
+      </button>
         {users.map((user) => (
             <div class="text-justify p-5 mx-60"  >
+
            <Link  class="text-4xl text-red-500 font-extrabold" to={{
-               pathname:'/details/description',
+               pathname:"/details/description",
                state: user,
            }}>{user.title}</Link>
            <h4  class="text-blue-800 font-medium">{user.date}</h4><br></br>
@@ -38,6 +44,7 @@ const Test2 = () => {
             ))}
        </div>
     );
+        
 };
 
 export default Test2;
