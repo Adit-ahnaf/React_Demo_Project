@@ -6,19 +6,35 @@ import {Route, Switch, BrowserRouter as Router} from '../node_modules/react-rout
 import Details from './Practice/Details';
 import Login from './Practice/Login';
 import Sighnup from './Practice/Sighnup';
-import GuardRoute from './Practice/GuardRoute';
+import { GuardProvider, GuardedRoute } from 'react-router-guards';
+import { getIsLoggedIn } from 'util';
+
+
+const requireLogin = (to, from, next) => {
+  if (to.meta.auth) {
+    if (getIsLoggedIn()) {
+      next();
+    }
+    next.redirect('/login');
+  } else {
+    next();
+  }
+};
+
 function App() {
   return (
-    <div className="App">
+    
     <Router>
+    <GuardProvider guards={[requireLogin]} >
       <Switch>
-      <GuardRoute exact path="/Test2" component={Test2}/>
-      <Route exact path="/details/description" component={Details}/>
-      <Route exact path="/" component={Login}/>
-      <GuardRoute exact path="/sighnup" component={Sighnup}/>
+      <GuardedRoute exact path="/" component={Test2} meta={{auth:true }}/>
+      <GuardedRoute exact path="/details/description" component={Details} meta={{ auth: true }} />
+      <GuardedRoute exact path="/login" component={Login}/>
+      <GuardedRoute exact path="/sighnup" component={Sighnup}/>
       </Switch>
+      </GuardProvider>
     </Router>
-    </div>
+    
   );
 }
 
