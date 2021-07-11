@@ -7,19 +7,23 @@ import Details from './Practice/Details';
 import Login from './Practice/Login';
 import Sighnup from './Practice/Sighnup';
 import { GuardProvider, GuardedRoute } from 'react-router-guards';
-import { getIsLoggedIn } from 'util';
+import { Redirect } from 'react-router-dom';
+
+
 
 
 const requireLogin = (to, from, next) => {
-  if (to.meta.auth) {
-    if (getIsLoggedIn()) {
-      next();
+   if (to.meta.true){
+    if (localStorage.getItem == null) {
+      <Redirect to="/login"/>
     }
-    next.redirect('/login');
-  } else {
-    next();
+  
+   else {
+      <Redirect to="/"/>
   }
+}
 };
+ 
 
 function App() {
   return (

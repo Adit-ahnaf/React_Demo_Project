@@ -15,12 +15,15 @@ const Sighnup = () => {
     setUser({ ...users, [e.target.name]: e.target.value });
   }
 
+
   const onSubmit = async e => {
     e.preventDefault();
-      await axios.post("http://localhost:8000/users", users)
+      await axios.post("http://localhost:8000/register", users)
       .then(response=>{
         console.log(response)
+        localStorage.setItem("user-Info",JSON.stringify(response.data.access_token))
       })
+     
 
 
   };

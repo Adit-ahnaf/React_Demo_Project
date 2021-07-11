@@ -22,9 +22,13 @@ const Test2 = (props) => {
         setUser(result.data) 
     };
 
+   const  LogOut=()=>{
+        localStorage.removeItem("user-Info")
+    }
+
     return (
         <div >
-             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"   type="button">
+             <button class="bg-red-500 hover:bg-red-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline" onClick={()=>{LogOut()}}  type="button">
         Log Out 
       </button>
         {users.map((user) => (
